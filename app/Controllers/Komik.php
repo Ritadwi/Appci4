@@ -153,6 +153,9 @@ class Komik extends BaseController
         // Cek gambar, apakah tetap gambar lama
         if ($fileSampul->getError() == 4) {
             $namaSampul = $this->request->getVar('sampulLama');
+        } else if ($this->request->getVar('sampulLama') == 'default.jpg') {
+            $namaSampul = $fileSampul->getRandomName();
+            $fileSampul->move('img', $namaSampul);
         } else {
             // generate nama file random
             $namaSampul = $fileSampul->getRandomName();
